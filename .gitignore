@@ -1,0 +1,4 @@
+*.o
+DEBUG/*
+*.docx
+HW4
