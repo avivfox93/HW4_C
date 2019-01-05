@@ -1,4 +1,4 @@
 *.o
-DEBUG/*
+Debug/*
 *.docx
 HW4
