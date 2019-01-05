@@ -11,7 +11,8 @@ const char* optionStr[NofOptions] =
 	"Save City information to file","Add a Kindergarten",
 	"Add a Child","Birthday to a Child",
 	"Count Hova childres",
-	"Sorting Menu"
+	"Sorting Menu",
+	"Linked List"
 };
 
 /**************************************************/
@@ -83,3 +84,5 @@ void variadicFunction(const char* word,...)
 	}
 	va_end(args);
 }
+
+

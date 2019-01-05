@@ -13,6 +13,7 @@ typedef enum
 	CHILD_BIRTHDAY,
 	COUNT_GRADUATE,
 	SORT_MENU,
+	LINKED_LIST,
 	NofOptions
 } MenuOptions;
 

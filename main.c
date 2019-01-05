@@ -60,6 +60,9 @@ int main(int argc, char* argv[])
 		case SORT_MENU:
 			sortingMenu(&utz);
 			break;
+		case LINKED_LIST:
+			kindergartensLinkedList(&utz);
+			break;
 		}
 	}while (uReq!=EXIT);
 	

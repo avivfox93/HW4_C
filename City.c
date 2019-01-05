@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "City.h"
 #include "Kindergarten.h"
@@ -93,4 +94,58 @@ void sortingMenu(City* pCity)
 	else
 		insertionSort((void*)pCity->pGardenList,pCity->count,
 				(option == SORT_KINDERGARTEN_BY_NAME)?compareGardenByName:compareGardenByType);
+}
+
+CityNODE* createLinkedListForKindergartenType(const City* pCity, GardenType type)
+{
+	int i;
+	CityNODE *result,*temp,*last = NULL;
+	if(!checkAllocation((result = (CityNODE*)calloc(1,sizeof(CityNODE)))))
+		return NULL;
+	last = result;
+	for(i = 0 ; i < pCity->count ; i++)
+	{
+		if(pCity->pGardenList[i]->type == type)
+		{
+			if(result->garden == NULL)
+				result->garden = pCity->pGardenList[i];
+			else if(!checkAllocation((temp = (CityNODE*)malloc(sizeof(CityNODE)))))
+					return result;
+			else
+			{
+				temp->garden = pCity->pGardenList[i];
+				temp->next = NULL;
+				last->next =  temp;
+				last = temp;
+			}
+		}
+	}
+	return result;
+}
+
+void displayKindergartensFromList(const CityNODE* list)
+{
+	int i;
+	for(i = 1 ; list != NULL ; list = list->next, i++)
+	{
+		printf("\nKindergarten %d:\n",i);
+		showGarden(list->garden);
+		printf("\n");
+	}
+}
+
+void releaseKindergartensLinkedList(CityNODE* list)
+{
+	for(;list != NULL ; list = list->next)
+		free(list);
+}
+
+void kindergartensLinkedList(const City* pCity)
+{
+	CityNODE* list;
+	GardenType type;
+	type = getTypeOption();
+	list = createLinkedListForKindergartenType(pCity,type);
+	displayKindergartensFromList(list);
+	releaseKindergartensLinkedList(list);
 }
