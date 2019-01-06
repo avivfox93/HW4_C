@@ -29,6 +29,7 @@ int			countChova(City* pCity);
 void 		sortingMenu(City* pCity);
 void		releaseCity(City* pCity);
 Node* 		createLinkedListForKindergartenType(const City* pCity, GardenType type);
+void		displayKindergartensFromList(const Node* list);
 void		releaseKindergartensLinkedList(Node* list);
 void 		kindergartensLinkedList(const City* pCity);
 
