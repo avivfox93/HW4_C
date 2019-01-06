@@ -96,24 +96,24 @@ void sortingMenu(City* pCity)
 				(option == SORT_KINDERGARTEN_BY_NAME)?compareGardenByName:compareGardenByType);
 }
 
-CityNODE* createLinkedListForKindergartenType(const City* pCity, GardenType type)
+Node* createLinkedListForKindergartenType(const City* pCity, GardenType type)
 {
 	int i;
-	CityNODE *result,*temp,*last = NULL;
-	if(!checkAllocation((result = (CityNODE*)calloc(1,sizeof(CityNODE)))))
+	Node *result,*temp,*last = NULL;
+	if(!checkAllocation((result = (Node*)calloc(1,sizeof(Node)))))
 		return NULL;
 	last = result;
 	for(i = 0 ; i < pCity->count ; i++)
 	{
 		if(pCity->pGardenList[i]->type == type)
 		{
-			if(result->garden == NULL)
-				result->garden = pCity->pGardenList[i];
-			else if(!checkAllocation((temp = (CityNODE*)malloc(sizeof(CityNODE)))))
+			if(result->data == NULL)
+				result->data = pCity->pGardenList[i];
+			else if(!checkAllocation((temp = (Node*)malloc(sizeof(Node)))))
 					return result;
 			else
 			{
-				temp->garden = pCity->pGardenList[i];
+				temp->data = pCity->pGardenList[i];
 				temp->next = NULL;
 				last->next =  temp;
 				last = temp;
@@ -123,18 +123,18 @@ CityNODE* createLinkedListForKindergartenType(const City* pCity, GardenType type
 	return result;
 }
 
-void displayKindergartensFromList(const CityNODE* list)
+void displayKindergartensFromList(const Node* list)
 {
 	int i;
 	for(i = 1 ; list != NULL ; list = list->next, i++)
 	{
 		printf("\nKindergarten %d:\n",i);
-		showGarden(list->garden);
+		showGarden((Garden*)list->data);
 		printf("\n");
 	}
 }
 
-void releaseKindergartensLinkedList(CityNODE* list)
+void releaseKindergartensLinkedList(Node* list)
 {
 	for(;list != NULL ; list = list->next)
 		free(list);
@@ -142,7 +142,7 @@ void releaseKindergartensLinkedList(CityNODE* list)
 
 void kindergartensLinkedList(const City* pCity)
 {
-	CityNODE* list;
+	Node* list;
 	GardenType type;
 	type = getTypeOption();
 	list = createLinkedListForKindergartenType(pCity,type);

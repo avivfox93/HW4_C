@@ -14,9 +14,9 @@ typedef struct
 
 typedef struct node
 {
-	Garden* garden;
+	void* data;
 	struct node* next;
-}CityNODE;
+}Node;
 
 void		readCity(City* pCity);
 void		showCityGardens(City* pCity);
@@ -28,9 +28,8 @@ void		birthdayToChild(City* pCity);
 int			countChova(City* pCity);
 void 		sortingMenu(City* pCity);
 void		releaseCity(City* pCity);
-CityNODE* 	createLinkedListForKindergartenType(const City* pCity, GardenType type);
-CityNODE* 	createLinkedListForKindergartenType(const City* pCity, GardenType type);
-void		releaseKindergartensLinkedList(CityNODE* list);
+Node* 		createLinkedListForKindergartenType(const City* pCity, GardenType type);
+void		releaseKindergartensLinkedList(Node* list);
 void 		kindergartensLinkedList(const City* pCity);
 
 #endif
