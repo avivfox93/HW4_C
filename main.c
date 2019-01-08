@@ -7,24 +7,9 @@
 #include "City.h"
 
 FileType fileType;
-int aa(const void* a, const void* b)
-{
-	return *(int*)a - *(int*)b;
-}
+
 int main(int argc, char* argv[])
 {
-	int a[] = {5,3,4,7,2};
-	for(int i = 0 ; i < 5 ; i++)
-	{
-		printf("wallak: %d\n",a[i]);
-	}
-	insertionSort(a,5,sizeof(int),aa);
-	printf("Sorted\n");
-	for(int i = 0 ; i < 5 ; i++)
-		{
-			printf("wallak: %d\n",a[i]);
-		}
-
 	if(argc != 2 || (*argv[1] != '1' && *argv[1] != '0'))
 	{
 		printf("You must enter 1 for binary file 0 for test file\nFor example %s 1\n",argv[0]);
