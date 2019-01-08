@@ -34,8 +34,9 @@ typedef enum
 int		menu();
 char*	getStrExactLength(char* inpStr);
 int		checkAllocation(const void* p);
-void 	insertionSort(void** arr, int length, int (*comperator)(const void*,const void*));
+void 	insertionSort(void* arr, int length, int size, int (*comperator)(const void*,const void*));
 void 	variadicFunction(const char* word,...);
+void	put(void* in, const void* a, int size);
 
 extern 	FileType fileType;
 

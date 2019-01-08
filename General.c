@@ -56,17 +56,19 @@ int checkAllocation(const void* p)
 	return 1;
 }
 
-void insertionSort(void** arr, int length, int (*comperator)(const void*,const void*))
+void insertionSort(void* arr, int length, int size, int (*comperator)(const void*,const void*))
 {
 	int i,j;
-	void* key;
+	void* key = malloc(size);
+	if (!checkAllocation(key)) return;
 	for (i = 1; i < length; i++)
 	{
-		key = arr[i];
-		for (j = i - 1; j >= 0 && (comperator(&arr[j],&key) > 0); j--)
-			arr[j+1] = arr[j];
-		arr[j+1] = key;
+		key = memcpy(key,arr + i*size,size);
+		for (j = i - 1; j >= 0 && (comperator(arr + j*size, key) > 0); j--)
+			memmove(arr + (j + 1)*size, arr + j*size, size);
+		memmove(arr + (j+1)*size, key,size);
 	}
+	free(key);
 }
 
 void variadicFunction(const char* word,...)
@@ -76,6 +78,7 @@ void variadicFunction(const char* word,...)
 	const char* current;
 	va_start(args,word);
 	current = word;
+
 	while(current != NULL)
 	{
 		num = va_arg(args,int);

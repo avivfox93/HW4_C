@@ -68,11 +68,12 @@ void writeChild(FILE* fp,const Child* pChild)
 //linear search
 Child*	findChildById(Child** pChildList, int count, int id)
 {
-	Child key = {id,0};
-	Child* key_ptr = &key;
+	Child *key_ptr,**result,key = {id,0};
+	key_ptr = &key;
 	qsort(pChildList,count,sizeof(Child*),childCompareById);
-	key_ptr = ((Child*)bsearch(&key_ptr,pChildList,count,sizeof(Child*),childCompareById));
-	return key_ptr;
+	result = ((Child**)bsearch(&key_ptr,pChildList,count,sizeof(Child*),childCompareById));
+	if(result == NULL) return NULL;
+	return *result;
 }
 
 void birthday(Child* pChild)

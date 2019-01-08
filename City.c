@@ -90,9 +90,9 @@ void sortingMenu(City* pCity)
 	if(option == SORT_CHILDREN_BY_ID)
 		for(i = 0 ; i < pCity->count ; i++)
 			insertionSort((void*)pCity->pGardenList[i]->childPtrArr,
-					pCity->pGardenList[i]->childCount,childCompareById);
+					pCity->pGardenList[i]->childCount, sizeof(Child*),childCompareById);
 	else
-		insertionSort((void*)pCity->pGardenList,pCity->count,
+		insertionSort((void*)pCity->pGardenList,pCity->count, sizeof(Garden*),
 				(option == SORT_KINDERGARTEN_BY_NAME)?compareGardenByName:compareGardenByType);
 }
 
